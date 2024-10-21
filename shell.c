@@ -114,7 +114,9 @@ void shell_loop()
     do
     {
         // Display the shell prompt
-        printf("%s@%s:%s$ ", get_username(), get_system_name(), get_current_dir());
+        // printf("%s@%s:%s$ ", get_username(), get_system_name(), get_current_dir());
+        printf("%s@%s:", get_username(), get_system_name());
+        display_prompt();
 
         // Read the command from user
         command = read_command();
@@ -129,9 +131,9 @@ void shell_loop()
             free(args);
             continue;
         }
-        
+
         // add_to_history(command);
-        
+
         // if (strcmp(command, "exit") == 0)
         // {
         //     save_history();
