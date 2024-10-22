@@ -64,38 +64,7 @@ void save_history()
     fclose(file);
 }
 
-// void add_to_history(const char *cmd)
-// {
 
-//     if (history.count > 0)
-//     {
-//         int last_index = (history.count - 1) % MAX_HISTORY;
-//         if (strcmp(history.commands[last_index], cmd) == 0)
-//         {
-//             return; // Don't add the command if it's the same as the last one
-//         }
-
-//     }
-//     // if (history.commands[history.count % MAX_HISTORY])
-//     // {
-//     //     free(history.commands[history.count % MAX_HISTORY]); // Free old command if it exists
-//     // }
-//     // else
-//     // {
-//     //     history.count++;
-//     // }
-//     // history.commands[history.count % MAX_HISTORY] = strdup(cmd); // Add new command
-//     if (history.commands[history.count % MAX_HISTORY])
-//     {
-//         free(history.commands[history.count % MAX_HISTORY]); // Free old command if it exists
-//     }
-//     history.commands[history.count % MAX_HISTORY] = strdup(cmd); // Add new command
-//     history.count++;                                             // Increment the count after adding the command
-
-//     save_history();
-
-//     // history.count++;
-// }
 
 // Function to trim leading and trailing spaces
 char *trim_whitespace(char *str) {

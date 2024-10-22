@@ -8,13 +8,16 @@
 #include "builtins.h"
 #include "history.h"
 
+char *home = "/home/mananchichra/a3";
+// char *home = getenv("PWD");
+// char *home;
+
 char *get_username()
 {
     struct passwd *pw = getpwuid(getuid());
     return pw->pw_name;
 }
 
-// Function to get the system name
 char *get_system_name()
 {
     static char hostname[HOST_NAME_MAX];
@@ -22,7 +25,6 @@ char *get_system_name()
     return hostname;
 }
 
-// Function to get current directory
 char *get_current_dir()
 {
     // shell_dir[PATH_MAX];
@@ -40,27 +42,24 @@ char *get_current_dir()
         return NULL;
     }
 }
-// Function to display the shell prompt
-char *display_prompt()
+void display_prompt()
 {
     char cwd[PATH_MAX];          // Buffer to store the current working directory
-    char *home = getenv("HOME"); // Get the home directory
+    // char *home = getenv("HOME"); // Get the home directory
+
+   
 
     char shell_dir[PATH_MAX];
     getcwd(shell_dir, sizeof(shell_dir));
 
-    // Get the current working directory
     if (getcwd(cwd, sizeof(cwd)) != NULL)
     {
-        // Check if the current directory is inside the home directory
         if (strstr(cwd, home) == cwd)
         {
-            // If cwd starts with home, replace the home part with ~
             printf("~%s$ ", cwd + strlen(home));
         }
         else
         {
-            // If cwd is not in the home directory, display full path
             printf("%s$ ", cwd);
         }
     }
@@ -68,9 +67,10 @@ char *display_prompt()
     {
         perror("getcwd() error");
     }
+
+    return;
 }
 
-// Function to read command from user
 char *read_command()
 {
     // printf("hiii");
@@ -80,7 +80,6 @@ char *read_command()
     return line;
 }
 
-// Function to split a line into arguments
 char **parse_command(char *line)
 {
     int bufsize = 64, position = 0;
@@ -103,7 +102,6 @@ char **parse_command(char *line)
     return tokens;
 }
 
-// Main loop of the shell
 void shell_loop()
 {
 
@@ -113,12 +111,10 @@ void shell_loop()
 
     do
     {
-        // Display the shell prompt
         // printf("%s@%s:%s$ ", get_username(), get_system_name(), get_current_dir());
         printf("%s@%s:", get_username(), get_system_name());
         display_prompt();
 
-        // Read the command from user
         command = read_command();
         // add_to_history(command);
         // Parse the command
@@ -168,6 +164,7 @@ void shell_loop()
 
 int main(int argc, char **argv)
 {
+    // home = getenv("PWD");
     load_history();
     // Run the shell loop
     shell_loop();

@@ -18,6 +18,9 @@ $(TARGET): $(OBJS)
 %.o: %.c
 	$(CC) $(CFLAGS) -c $<
 
+# run_script: script.sh
+# 	bash -c 'source ./script.sh'
+
 # Clean up object files and executable
 clean:
 	rm -f $(OBJS)
