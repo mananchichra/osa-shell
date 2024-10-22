@@ -73,7 +73,6 @@ void load_history()
 //         perror("Could not open history file");
 //         return;
 //     }
-
 //     int history_start = history.count > MAX_HISTORY ? history.count % MAX_HISTORY : 0;
 //     int total_commands = history.count > MAX_HISTORY ? MAX_HISTORY : history.count;
 
@@ -84,6 +83,7 @@ void load_history()
 
 //     fclose(file);
 // }
+
 void save_history() {
     FILE *file = fopen(HISTORY_FILE, "w");
     if (file == NULL) {
@@ -130,7 +130,7 @@ void add_to_history(const char *cmd)
     history.commands[history.count % MAX_HISTORY] = strdup(cmd); // Add new command
     history.count++;                                             // Increment the count after adding the command
 
-    // save_history();
+    save_history();
 
     // history.count++;
 }
