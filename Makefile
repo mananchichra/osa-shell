@@ -2,7 +2,7 @@ CC = gcc
 CFLAGS = -Wall
 
 # List of object files
-OBJS = shell.o builtins.o history.o 
+OBJS = shell.o builtins.o history.o cd.o
 
 # Target executable
 TARGET = my_shell
@@ -20,4 +20,4 @@ $(TARGET): $(OBJS)
 
 # Clean up object files and executable
 clean:
-	rm -f $(OBJS) $(TARGET)
+	rm -f $(OBJS)

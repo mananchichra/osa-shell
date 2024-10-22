@@ -65,21 +65,37 @@ void load_history()
 }
 
 // Save history to a file
-void save_history()
-{
+// void save_history()
+// {
+//     FILE *file = fopen(HISTORY_FILE, "w");
+//     if (file == NULL)
+//     {
+//         perror("Could not open history file");
+//         return;
+//     }
+
+//     int history_start = history.count > MAX_HISTORY ? history.count % MAX_HISTORY : 0;
+//     int total_commands = history.count > MAX_HISTORY ? MAX_HISTORY : history.count;
+
+//     for (int i = 0; i < total_commands; i++)
+//     {
+//         fprintf(file, "%s\n", history.commands[(history_start + i) % MAX_HISTORY]);
+//     }
+
+//     fclose(file);
+// }
+void save_history() {
     FILE *file = fopen(HISTORY_FILE, "w");
-    if (file == NULL)
-    {
+    if (file == NULL) {
         perror("Could not open history file");
         return;
     }
 
-    int history_start = history.count > MAX_HISTORY ? history.count % MAX_HISTORY : 0;
+    int start = history.count > MAX_HISTORY ? history.count % MAX_HISTORY : 0;
     int total_commands = history.count > MAX_HISTORY ? MAX_HISTORY : history.count;
 
-    for (int i = 0; i < total_commands; i++)
-    {
-        fprintf(file, "%s\n", history.commands[(history_start + i) % MAX_HISTORY]);
+    for (int i = 0; i < total_commands; i++) {
+        fprintf(file, "%s\n", history.commands[(start + i) % MAX_HISTORY]);
     }
 
     fclose(file);
@@ -96,23 +112,28 @@ void add_to_history(const char *cmd)
         {
             return; // Don't add the command if it's the same as the last one
         }
+       
     }
+    // if (history.commands[history.count % MAX_HISTORY])
+    // {
+    //     free(history.commands[history.count % MAX_HISTORY]); // Free old command if it exists
+    // }
+    // else
+    // {
+    //     history.count++;
+    // }
+    // history.commands[history.count % MAX_HISTORY] = strdup(cmd); // Add new command
     if (history.commands[history.count % MAX_HISTORY])
     {
         free(history.commands[history.count % MAX_HISTORY]); // Free old command if it exists
     }
-    else
-    {
-        history.count++;   
-    }
     history.commands[history.count % MAX_HISTORY] = strdup(cmd); // Add new command
+    history.count++;                                             // Increment the count after adding the command
 
-    
-    save_history();
+    // save_history();
 
     // history.count++;
 }
-
 
 // void add_to_history(char* command) {
 //     // List of valid commands

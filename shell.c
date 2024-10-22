@@ -132,13 +132,13 @@ void shell_loop()
             continue;
         }
 
-        // add_to_history(command);
+        add_to_history(command);
 
-        // if (strcmp(command, "exit") == 0)
-        // {
-        //     save_history();
-        //     break;
-        // }
+        if (strcmp(command, "exit") == 0)
+        {
+            save_history();
+            break;
+        }
         // Handle built-in commands
         if (handle_builtin_commands(args))
         {
@@ -150,7 +150,7 @@ void shell_loop()
         // Handle the 'history' command
         if (strcmp(args[0], "history") == 0)
         {
-            print_history();
+            history_command(NULL);
             free(command);
             free(args);
             continue;
@@ -165,7 +165,7 @@ void shell_loop()
 
 int main(int argc, char **argv)
 {
-    // load_history();
+    load_history();
     // Run the shell loop
     shell_loop();
     return 0;
