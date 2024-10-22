@@ -122,6 +122,9 @@ void shell_loop()
         command = read_command();
         // add_to_history(command);
         // Parse the command
+
+        add_to_history(command);
+        
         args = parse_command(command);
 
         // If no command, continue
@@ -132,7 +135,7 @@ void shell_loop()
             continue;
         }
 
-        add_to_history(command);
+        // add_to_history(command);
 
         if (strcmp(command, "exit") == 0)
         {

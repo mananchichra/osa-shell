@@ -12,6 +12,8 @@
 #ifndef HISTORY_COMMAND_H
 #define HISTORY_COMMAND_H
 
+#include <ctype.h>
+
 void load_history();
 void save_history();
 void add_to_history(const char *cmd);
