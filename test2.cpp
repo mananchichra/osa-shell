@@ -2,48 +2,40 @@
 #include <vector>
 using namespace std;
 
-class Student {
+// **God Object**: Manages customer information, order history, and discounts.
+class Customer {
 private:
     string name;
-    int age;
-    vector<int> grades;
+    string email;
+    vector<string> orderHistory;
+    double totalSpent;
 
 public:
-    Student(string n, int a) : name(n), age(a) {}
+    Customer(string n, string e) : name(n), email(e), totalSpent(0) {}
 
-    void addGrade(int grade) {
-        grades.push_back(grade);
+    void placeOrder(string order, double price) {
+        orderHistory.push_back(order);
+        totalSpent += price;
     }
 
-    void printGrades() {
-        cout << "Grades of " << name << ": ";
-        for (int g : grades) {
-            cout << g << " ";
+    // **Long Method**: Doing too many things (printing order history and calculating discounts).
+    void printOrderHistory() {
+        cout << "Order History for " << name << ":\n";
+        for (const string &order : orderHistory) {
+            cout << "- " << order << endl;
         }
-        cout << endl;
-    }
 
-    double calculateAverage() {
-        if (grades.empty()) return 0.0;
-        int sum = 0;
-        for (int g : grades) {
-            sum += g;
+        if (totalSpent > 500) {
+            cout << "Eligible for 10% discount.\n";
+        } else if (totalSpent > 1000) {
+            cout << "Eligible for 20% discount.\n";
         }
-        return (double)sum / grades.size();
     }
 
-    string getPerformance() {
-        double avg = calculateAverage();
-        if (avg > 90) return "Excellent";
-        else if (avg > 75) return "Good";
-        else return "Needs Improvement";
-    }
-
-    bool isEligibleForScholarship() {
-        return calculateAverage() > 85;
-    }
-
-    void printScholarshipStatus() {
-        cout << name << " is " << (isEligibleForScholarship() ? "eligible" : "not eligible") << " for a scholarship.\n";
+    // **Feature Envy**: Discount logic should be in a separate class.
+    double calculateDiscount() {
+        if (totalSpent > 1000) return totalSpent * 0.2;
+        if (totalSpent > 500) return totalSpent * 0.1;
+        return 0;
     }
 };

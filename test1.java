@@ -1,53 +1,53 @@
 import java.util.ArrayList;
 import java.util.List;
 
-class Employee {
-    private String name;
-    private String department;
-    private double salary;
-    private List<String> tasks;
+// **God Object**: Manages user details, authentication, logging, and notifications.
+class UserAccount {
+    private String username;
+    private String password;
+    private String email;
+    private String phone;
+    private boolean isLoggedIn;
+    private List<String> activityLog;
 
-    public Employee(String name, String department, double salary) {
-        this.name = name;
-        this.department = department;
-        this.salary = salary;
-        this.tasks = new ArrayList<>();
+    public UserAccount(String username, String password, String email, String phone) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.phone = phone;
+        this.isLoggedIn = false;
+        this.activityLog = new ArrayList<>();
     }
 
-    public void addTask(String task) {
-        tasks.add(task);
+    // **Long Method**: Doing too many things in one method.
+    public void authenticate(String inputUsername, String inputPassword) {
+        if (inputUsername.equals(username) && inputPassword.equals(password)) {
+            isLoggedIn = true;
+            System.out.println("Login successful.");
+            activityLog.add("User logged in.");
+            sendLoginNotification();
+        } else {
+            System.out.println("Invalid credentials.");
+        }
     }
 
-    public void removeTask(String task) {
-        tasks.remove(task);
+    // **Feature Envy**: This method should belong to a Notification class.
+    private void sendLoginNotification() {
+        System.out.println("Sending login notification to " + email + " and " + phone);
     }
 
-    public List<String> getTasks() {
-        return tasks;
+    // **Primitive Obsession**: Using strings for username, email, and phone instead of proper objects.
+    public void updateContactInfo(String newEmail, String newPhone) {
+        this.email = newEmail;
+        this.phone = newPhone;
+        activityLog.add("Updated contact information.");
     }
 
-    public double calculateAnnualSalary() {
-        return salary * 12;
-    }
-
-    public double calculateTax() {
-        return calculateAnnualSalary() * 0.2;
-    }
-
-    public double calculateBonus() {
-        return salary * 0.1;
-    }
-
-    public double calculateNetSalary() {
-        return calculateAnnualSalary() - calculateTax() + calculateBonus();
-    }
-
-    public void printSalarySlip() {
-        System.out.println("Name: " + name);
-        System.out.println("Department: " + department);
-        System.out.println("Annual Salary: " + calculateAnnualSalary());
-        System.out.println("Tax: " + calculateTax());
-        System.out.println("Bonus: " + calculateBonus());
-        System.out.println("Net Salary: " + calculateNetSalary());
+    // **Divergent Change**: If user tracking changes, multiple methods (`authenticate`, `updateContactInfo`) need modification.
+    public void printActivityLog() {
+        System.out.println("Activity log for " + username + ":");
+        for (String log : activityLog) {
+            System.out.println("- " + log);
+        }
     }
 }
