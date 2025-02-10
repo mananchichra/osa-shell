@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
 
-// **God Object**: Manages user details, authentication, logging, and notifications.
 class UserAccount {
     private String username;
     private String password;
@@ -19,7 +18,6 @@ class UserAccount {
         this.activityLog = new ArrayList<>();
     }
 
-    // **Long Method**: Doing too many things in one method.
     public void authenticate(String inputUsername, String inputPassword) {
         if (inputUsername.equals(username) && inputPassword.equals(password)) {
             isLoggedIn = true;
@@ -31,19 +29,16 @@ class UserAccount {
         }
     }
 
-    // **Feature Envy**: This method should belong to a Notification class.
     private void sendLoginNotification() {
         System.out.println("Sending login notification to " + email + " and " + phone);
     }
 
-    // **Primitive Obsession**: Using strings for username, email, and phone instead of proper objects.
     public void updateContactInfo(String newEmail, String newPhone) {
         this.email = newEmail;
         this.phone = newPhone;
         activityLog.add("Updated contact information.");
     }
 
-    // **Divergent Change**: If user tracking changes, multiple methods (`authenticate`, `updateContactInfo`) need modification.
     public void printActivityLog() {
         System.out.println("Activity log for " + username + ":");
         for (String log : activityLog) {

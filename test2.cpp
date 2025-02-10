@@ -2,7 +2,6 @@
 #include <vector>
 using namespace std;
 
-// **God Object**: Manages customer information, order history, and discounts.
 class Customer {
 private:
     string name;
@@ -18,7 +17,6 @@ public:
         totalSpent += price;
     }
 
-    // **Long Method**: Doing too many things (printing order history and calculating discounts).
     void printOrderHistory() {
         cout << "Order History for " << name << ":\n";
         for (const string &order : orderHistory) {
@@ -32,7 +30,6 @@ public:
         }
     }
 
-    // **Feature Envy**: Discount logic should be in a separate class.
     double calculateDiscount() {
         if (totalSpent > 1000) return totalSpent * 0.2;
         if (totalSpent > 500) return totalSpent * 0.1;
