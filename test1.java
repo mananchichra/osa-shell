@@ -14,7 +14,6 @@ class Employee {
         this.tasks = new ArrayList<>();
     }
 
-    // **God Object**: This class does too many things
     public void addTask(String task) {
         tasks.add(task);
     }
@@ -27,7 +26,6 @@ class Employee {
         return tasks;
     }
 
-    // **Shotgun Surgery**: If salary calculation logic changes, multiple methods need modification
     public double calculateAnnualSalary() {
         return salary * 12;
     }
@@ -40,12 +38,10 @@ class Employee {
         return salary * 0.1;
     }
 
-    // **Feature Envy**: This method should be in a separate Payroll class
     public double calculateNetSalary() {
         return calculateAnnualSalary() - calculateTax() + calculateBonus();
     }
 
-    // **Data Clumps**: Repeated data passing
     public void printSalarySlip() {
         System.out.println("Name: " + name);
         System.out.println("Department: " + department);

@@ -23,7 +23,6 @@ public:
         cout << endl;
     }
 
-    // **God Object**: Manages grades and performance calculation
     double calculateAverage() {
         if (grades.empty()) return 0.0;
         int sum = 0;
@@ -40,12 +39,10 @@ public:
         else return "Needs Improvement";
     }
 
-    // **Shotgun Surgery**: If grading logic changes, multiple methods need updating
     bool isEligibleForScholarship() {
         return calculateAverage() > 85;
     }
 
-    // **Feature Envy**: This logic should be in a separate Scholarship class
     void printScholarshipStatus() {
         cout << name << " is " << (isEligibleForScholarship() ? "eligible" : "not eligible") << " for a scholarship.\n";
     }
