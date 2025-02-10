@@ -3,8 +3,8 @@ import java.util.List;
 
 class UserAccount {
     private String username;
-    private String password;
-    private String email;
+    public String password;
+    public String email;
     private String phone;
     private boolean isLoggedIn;
     private List<String> activityLog;
