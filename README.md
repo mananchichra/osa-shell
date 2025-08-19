@@ -1,9 +1,7 @@
 
-# Custom Shell Project - A3
+# Custom Shell Project
 
-**Name** : **Manan Chichra**
-
-**Roll No** : **2022102058** 
+**Manan Chichra**
 
 ## 1. echo
 
